@@ -19,4 +19,4 @@ app.get('/neal_mcbeal.js', function(req, res) {
 	res.sendFile(path.join(__dirname + '/app/js/neal_mcbeal.js'));
 });
 
-app.listen(8080);
+app.listen(80);

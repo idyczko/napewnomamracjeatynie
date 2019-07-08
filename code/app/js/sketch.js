@@ -7,7 +7,7 @@ let fourierX;
 let fourierY;
 let fourier;
 let colorPace = 0;
-let pace = 10;
+let pace = 1;
 let colorIndex = 0;
 
 function preload() {
@@ -23,7 +23,7 @@ function rescaleNeal() {
 }
 
 function setup() {
-	rainbow = generateRainbow(35);
+	rainbow = generateRainbow(100);
 	createCanvas(windowWidth, windowHeight);
 	
 	let x_signal = coordinates.map(coordinate => ({re: coordinate.x, im: 0}));
@@ -41,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-	background(0);
+	background(0, 184, 230);
 	
 	let vx = epicycles(width/2 - 50, 150, 0, fourierX);
 	let vy = epicycles(300, height/2 + 50, HALF_PI, fourierY);
@@ -61,14 +61,14 @@ function draw() {
 	
 	beginShape();
 	noFill();
-	
+	strokeWeight(3);	
 	for (let i = 0; i < path.length; i++) {
 		stroke(color.r, color.g, color.b);
 		vertex(path[i].x, path[i].y);
 	}
-	
-	endShape();
-	
+	endShape();	
+	strokeWeight(1);
+
 	time += dt;
 	
 	if (time > TWO_PI) {
