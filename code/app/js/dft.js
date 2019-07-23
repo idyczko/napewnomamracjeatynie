@@ -14,8 +14,8 @@ function dft(signal) {
 			im += signal[n].im*cos(phi) - signal[n].re*sin(phi);
 		}
 		
-		re /= N/1.2;
-		im /= N/1.2;
+		re /= N/4;
+		im /= N/4;
 		
 		let freq = k;
 		let amp = sqrt(re*re + im*im);

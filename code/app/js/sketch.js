@@ -9,10 +9,12 @@ let fourier;
 let colorPace = 0;
 let pace = 1;
 let colorIndex = 0;
+let takeEvery = 2;
 
 function preload() {
-	rescaleNeal();
-	coordinates = neal_mcbeal;
+	//rescaleNeal();
+	coordinates = janina;//neal_mcbeal;
+	skipCoordinates();
 }
 
 function rescaleNeal() {
@@ -20,6 +22,16 @@ function rescaleNeal() {
 		neal_mcbeal[i].x = neal_mcbeal[i].x / 2.5 - 200;
 		neal_mcbeal[i].y = -neal_mcbeal[i].y * 4;
 	}
+}
+
+function skipCoordinates() {
+	let temp = [];
+	for (let i = 0; i < coordinates.length; i++) {
+		if (i%takeEvery == 0) {
+			temp.push(coordinates[i]);
+		}
+	}
+	coordinates = temp;
 }
 
 function setup() {
@@ -43,19 +55,16 @@ function setup() {
 function draw() {
 	background(0, 184, 230);
 	
-	let vx = epicycles(width/2 - 50, 150, 0, fourierX);
-	let vy = epicycles(300, height/2 + 50, HALF_PI, fourierY);
+	//let vx = epicycles(width/2 - 50, 150, 0, fourierX);
+	//let vy = epicycles(300, height/2 + 50, HALF_PI, fourierY);
 	let vf = epicycles(width/2 - 50, height/2 + 50, 0, fourier);
-	let v = createVector(vx.x, vy.y);
+	let v = createVector(vf.x, vf.y);
 	
 	path.unshift(v)
 	
-	if (path.length > 500) {
-		path.pop();
-	}
 	
-	line(vx.x, vx.y, v.x, v.y);
-	line(vy.x, vy.y, v.x, v.y);
+	//line(vx.x, vx.y, v.x, v.y);
+	//line(vy.x, vy.y, v.x, v.y);
 	
 	let color = rainbow[generateColorIndex()];
 	
@@ -70,10 +79,10 @@ function draw() {
 	strokeWeight(1);
 
 	time += dt;
-	
+
 	if (time > TWO_PI) {
 		time = 0;
-		path = []
+		//path = []
 	}
 }
 

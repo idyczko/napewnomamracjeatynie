@@ -18,5 +18,8 @@ app.get('/dft.js', function(req, res) {
 app.get('/neal_mcbeal.js', function(req, res) {
 	res.sendFile(path.join(__dirname + '/app/js/neal_mcbeal.js'));
 });
+app.get('/janina.js', function(req, res) {
+	res.sendFile(path.join(__dirname + '/app/js/janina.js'));
+});
 
-app.listen(80);
+app.listen(8000);
